@@ -1,3 +1,5 @@
+#pragma once
+
 #include <functional>
 #include <mutex>
 #include <condition_variable>
@@ -37,3 +39,4 @@ namespace ge {
 	};
 
 }
+
