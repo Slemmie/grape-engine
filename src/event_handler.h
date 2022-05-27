@@ -8,14 +8,12 @@
 
 namespace ge{
 
-	static Thread_pool pool = Thread_pool(10);
-	
 	template <typename... ARGS> class Event {
 		public:
 			void callback(ARGS&&... args) {
 				for (int i = 0; i < (int)functions.size(); ++i) {
 					if (*functions[i] != nullptr) {
-						pool.push(*functions[i],args...);
+						Thread_pool::instance().push(*functions[i],args...);
 					}
 					else{
 						delete_function(functions[i]);
@@ -39,7 +37,6 @@ namespace ge{
 		protected:
 			std::vector<std::shared_ptr<std::function <void(ARGS...)>>> functions; 
 	};
-
 
 }
 
