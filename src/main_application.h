@@ -1,7 +1,6 @@
 #pragma once
 
-#include <memory>
-#include <thread>
+#include "core.h"
 
 // must be specified by client side
 extern void ON_GE_INIT();
