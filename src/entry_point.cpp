@@ -1,14 +1,17 @@
-#pragma once
+#include "main_application.h"
+
+#include <cassert>
 
 namespace ge {
 	
-	extern void on_init();
+	void m_destruct_engine(engine& engine_instance) noexcept {
+		
+	}
 	
 } /// namespace ge
 
 int main() {
-	// construct main application class
-	ge::on_init();
-	// call main application class run method
-	// call main application destructor
+	ge::engine& engine_instance = ge::engine::instance();
+	engine_instance.run();
+	ge::m_destruct_engine(engine_instance);
 }
