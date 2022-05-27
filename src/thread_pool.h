@@ -32,6 +32,7 @@ namespace ge {
 		
 	private:
 
+
 		void thread_loop();
 
 		bool terminate = false;
