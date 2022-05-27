@@ -1,6 +1,6 @@
 #pragma once
 
-#include "thread_pool.cpp"
+#include "thread_pool.h"
 #include <iostream>
 #include <vector>
 #include <memory>

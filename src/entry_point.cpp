@@ -4,14 +4,14 @@
 
 namespace ge {
 	
-	void m_destruct_engine(engine& engine_instance) noexcept {
+	void m_destruct_engine(Engine& engine_instance) noexcept {
 		
 	}
 	
 } /// namespace ge
 
 int main() {
-	ge::engine& engine_instance = ge::engine::instance();
+	ge::Engine& engine_instance = ge::Engine::instance();
 	engine_instance.run();
 	ge::m_destruct_engine(engine_instance);
 }

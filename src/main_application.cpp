@@ -2,7 +2,7 @@
 
 namespace ge {
 	
-	void engine::run() const noexcept {
+	void Engine::run() const noexcept {
 		// TODO: launch on seperate thread
 		ON_GE_INIT();
 	}

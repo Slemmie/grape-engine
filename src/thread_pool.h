@@ -11,6 +11,10 @@ namespace ge {
 	class Thread_pool {
 	
 	public:
+		static inline Thread_pool& instance() {
+			static Thread_pool thread_pool_instance(10);
+			return thread_pool_instance;
+		}
 
 		Thread_pool(unsigned int threads_count);
 		~Thread_pool();
