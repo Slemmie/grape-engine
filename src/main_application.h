@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core.h"
+#include "thread_pool.h"
 
 // must be specified by client side
 extern void ON_GE_INIT();
@@ -39,6 +40,7 @@ namespace ge {
 	private:
 		
 		std::thread::id m_engine_thread_id;
+		Thread_pool thread_pool = Thread_pool(10);
 		
 	};
 	
