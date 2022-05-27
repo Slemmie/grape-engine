@@ -1,6 +1,6 @@
-#include "main_application.h"
+#include "core.h"
 
-#include <cassert>
+#include "main_application.h"
 
 namespace ge {
 	
