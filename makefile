@@ -2,7 +2,8 @@ all: release
 
 CXX_FLAGS = -Wshadow -Wall -std=c++17
 CXX_RELEASE_FLAGS = -O2
-CXX_DEBUG_FLAGS = -g -fsanitize=undefined,address -D_GLIBCXX_DEBUG -D_GE_DEBUG
+CXX_DEBUG_FLAGS = -g -fsanitize=undefined,address -D_GLIBCXX_DEBUG
+#CXX_DEBUG_FLAGS = -g -fsanitize=undefined,address -D_GLIBCXX_DEBUG -D_GE_DEBUG
 #CXX_DEBUG_FLAGS = -g -fsanitize=undefined -D_GLIBCXX_DEBUG -D_GE_DEBUG
 
 SRC_FILES =             \
