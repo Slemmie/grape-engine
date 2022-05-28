@@ -1,4 +1,5 @@
 libgengine.so
+libgengine_debug.so
 run.sh
 comp.sh
-testing/*
+testing/

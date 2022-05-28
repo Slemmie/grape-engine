@@ -21,15 +21,15 @@ release: ${OBJ_FILES_RELEASE}
 	g++ $(CXX_FLAGS) -shared $^ -o libgengine.so $(CXX_RELEASE_FLAGS)
 	make clean
 
-%_release.o: %.cpp ${HDR_FILES}
+%_release.o: %.cpp gepch ${HDR_FILES}
 	g++ $(CXX_FLAGS) -fPIC -c $< -o $@ $(CXX_RELEASE_FLAGS) -include ./src/pch/gch/gepch.h
 
 debug: ${OBJ_FILES_DEBUG}
 	g++ $(CXX_FLAGS) -shared $^ -o libgengine_debug.so $(CXX_DEBUG_FLAGS)
 	make clean
 
-%_debug.o: %.cpp ${HDR_FILES}
-	g++ $(CXX_FLAGS) -fPIC -c $< -o $@ $(CXX_DEBUG_FLAGS) -include ./src/pch/gch/gepch.h
+%_debug.o: %.cpp gepch_debug ${HDR_FILES}
+	g++ $(CXX_FLAGS) -fPIC -c $< -o $@ $(CXX_DEBUG_FLAGS) -include ./src/pch/gch/gepch_debug.h
 
 gepch:
 	g++ $(CXX_FLAGS) -fPIC -c $(GEPCH) -o ./src/pch/gch/gepch.h.gch $(CXX_RELEASE_FLAGS)
