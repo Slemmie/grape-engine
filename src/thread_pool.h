@@ -12,7 +12,7 @@ namespace ge {
 	
 	public:
 		static inline Thread_pool& instance() {
-			static Thread_pool thread_pool_instance(10);
+			static Thread_pool thread_pool_instance(std::thread::hardware_concurrency());
 			return thread_pool_instance;
 		}
 
