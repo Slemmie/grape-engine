@@ -28,7 +28,7 @@ namespace ge {
 			queue_condition.notify_one();
 		}
 
-		bool busy();
+		bool job_queue_empty();
 		
 	private:
 

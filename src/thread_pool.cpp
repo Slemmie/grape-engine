@@ -17,7 +17,7 @@ namespace ge {
 		threads.clear();
 	}
 
-	bool Thread_pool::busy() {
+	bool Thread_pool::job_queue_empty() {
 		std::unique_lock<std::mutex> lock(queue_mutex);
 		return job_queue.empty();
 	}
