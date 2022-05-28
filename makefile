@@ -17,15 +17,17 @@ OBJ_FILES_DEBUG = ${SRC_FILES:.cpp=_debug.o}
 
 GEPCH = ./src/pch/gepch.h
 
+LINKS = -lpthread
+
 release: ${OBJ_FILES_RELEASE}
-	g++ $(CXX_FLAGS) -shared $^ -o libgengine.so $(CXX_RELEASE_FLAGS)
+	g++ $(CXX_FLAGS) -shared $^ -o libgengine.so $(CXX_RELEASE_FLAGS) $(LINKS)
 	make clean
 
 %_release.o: %.cpp gepch ${HDR_FILES}
 	g++ $(CXX_FLAGS) -fPIC -c $< -o $@ $(CXX_RELEASE_FLAGS) -include ./src/pch/gch/gepch.h
 
 debug: ${OBJ_FILES_DEBUG}
-	g++ $(CXX_FLAGS) -shared $^ -o libgengine_debug.so $(CXX_DEBUG_FLAGS)
+	g++ $(CXX_FLAGS) -shared $^ -o libgengine_debug.so $(CXX_DEBUG_FLAGS) $(LINKS)
 	make clean
 
 %_debug.o: %.cpp gepch_debug ${HDR_FILES}
