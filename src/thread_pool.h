@@ -1,11 +1,5 @@
 #pragma once
 
-#include <functional>
-#include <mutex>
-#include <condition_variable>
-#include <thread>
-#include <queue>
-
 namespace ge {
 	
 	class Thread_pool {
@@ -16,8 +10,9 @@ namespace ge {
 			return thread_pool_instance;
 		}
 
-		Thread_pool(unsigned int threads_count);
+		Thread_pool(size_t threads_count);
 		~Thread_pool();
+		
 		template<typename F, typename... Args>
 		void push(F&& job, Args&&... args) {
 			std::function <void()> f = std::bind(job, std::forward<Args>(args)...);
@@ -30,8 +25,21 @@ namespace ge {
 
 		bool job_queue_empty();
 		
+		inline size_t count_busy() const noexcept {
+			return m_busy_count;
+		}
+		
+		inline size_t size() noexcept {
+			std::unique_lock <std::mutex> lock(queue_mutex);
+			return threads.size();
+		}
+		
 	private:
-
+		
+		Thread_pool(const Thread_pool&) = delete;
+		void operator = (const Thread_pool&) = delete;
+		
+		std::atomic <size_t> m_busy_count;
 
 		void thread_loop();
 

@@ -1,9 +1,11 @@
 #include "thread_pool.h"
 
 namespace ge {
-	Thread_pool::Thread_pool(unsigned int thread_count) {
+	Thread_pool::Thread_pool(size_t thread_count) :
+	m_busy_count(0)
+	{
 		threads.resize(thread_count);
-		for(unsigned int i = 0; i < thread_count; i++)
+		for(size_t i = 0; i < thread_count; i++)
 			threads[i] = std::thread([this] () {thread_loop();});
 	}
 	
@@ -34,7 +36,9 @@ namespace ge {
 				job = job_queue.front();
 				job_queue.pop();
 			}
+			m_busy_count++;
 			job();
+			m_busy_count--;
 		}
 	}
 }
