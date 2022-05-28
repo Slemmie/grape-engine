@@ -35,9 +35,11 @@ debug: ${OBJ_FILES_DEBUG}
 	g++ $(CXX_FLAGS) -fPIC -c $< -o $@ $(CXX_DEBUG_FLAGS) -include ./src/pch/gch/gepch_debug.h
 
 gepch:
+	mkdir -p ./src/pch/gch/
 	g++ $(CXX_FLAGS) -fPIC -c $(GEPCH) -o ./src/pch/gch/gepch.h.gch $(CXX_RELEASE_FLAGS)
 
 gepch_debug:
+	mkdir -p ./src/pch/gch/
 	g++ $(CXX_FLAGS) -fPIC -c $(GEPCH) -o ./src/pch/gch/gepch_debug.h.gch $(CXX_DEBUG_FLAGS)
 
 .PHONY: clean
