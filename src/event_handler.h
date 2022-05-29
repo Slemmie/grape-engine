@@ -21,11 +21,17 @@ namespace ge {
 				m_released = true;
 			}
 			
+			inline void release_wait(Event <ARGS...>& event) noexcept {
+				std::unique_lock <std::mutex> lock(event.m_functions_mutex);
+				m_released = true;
+			}
+			
 			constexpr bool released() const noexcept {
 				return m_released;
 			}
 			
 		private:
+			
 			
 			std::atomic <bool> m_released;
 			
@@ -34,6 +40,11 @@ namespace ge {
 			friend class Event;
 			
 		};
+		
+		static constexpr std::shared_ptr <Dynamic>
+		dynamic(const std::function <void (ARGS...)>& function) {
+			return std::make_shared <Dynamic> (function);
+		}
 		
 		void callback(ARGS&&... args) noexcept {
 			std::unique_lock <std::mutex> lock(m_functions_mutex);
@@ -52,7 +63,7 @@ namespace ge {
 			}
 		}
 		
-		inline void push(const Dynamic* dynamic_function) noexcept {
+		inline void push(std::shared_ptr <Dynamic> dynamic_function) noexcept {
 			std::unique_lock <std::mutex> lock(m_functions_mutex);
 			dynamic_functions.emplace_back(dynamic_function);
 		}
@@ -64,10 +75,12 @@ namespace ge {
 		
 	private:
 		
-		std::vector <const Dynamic*> dynamic_functions;
+		std::vector <std::shared_ptr <Dynamic>> dynamic_functions;
 		std::vector <std::function <void (ARGS...)>> static_functions;
 		
 		std::mutex m_functions_mutex;
+		
+		friend class Dynamic;
 		
 	};
 	
