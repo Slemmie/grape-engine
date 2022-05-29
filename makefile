@@ -20,12 +20,12 @@ OBJ_FILES_DEBUG = ${SRC_FILES:.cpp=_debug.o}
 
 GEPCH = ./src/pch/gepch.h
 
-LINKS =                       \
--L ./vendor/bin/glfw/ -lglfw3 \
--ldl                          \
--lGL                          \
--lpthread                     \
--L ./vendor/bin/glew/ -lGLEW  \
+LINKS =                           \
+-L ./src/vendor/bin/glfw/ -lglfw3 \
+-ldl                              \
+-lGL                              \
+-lpthread                         \
+-L ./src/vendor/bin/glew/ -lGLEW  \
 
 release: ${OBJ_FILES_RELEASE}
 	g++ $(CXX_FLAGS) -shared $^ -o libgengine.so $(CXX_RELEASE_FLAGS) $(LINKS)
