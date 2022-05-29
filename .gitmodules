@@ -1,0 +1,6 @@
+[submodule "src/vendor/glfw"]
+	path = src/vendor/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "src/vendor/glew"]
+	path = src/vendor/glew
+	url = https://github.com/nigels-com/glew.git

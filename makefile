@@ -1,5 +1,8 @@
 all: release
 
+deps:
+	cd ./vendor/ && make
+
 CXX_FLAGS = -Wshadow -Wall -std=c++17
 CXX_RELEASE_FLAGS = -O2
 CXX_DEBUG_FLAGS = -g -fsanitize=undefined,address -D_GLIBCXX_DEBUG
@@ -17,7 +20,12 @@ OBJ_FILES_DEBUG = ${SRC_FILES:.cpp=_debug.o}
 
 GEPCH = ./src/pch/gepch.h
 
-LINKS = -lpthread
+LINKS =                       \
+-L ./vendor/bin/glfw/ -lglfw3 \
+-ldl                          \
+-lGL                          \
+-lpthread                     \
+-L ./vendor/bin/glew/ -lGLEW  \
 
 release: ${OBJ_FILES_RELEASE}
 	g++ $(CXX_FLAGS) -shared $^ -o libgengine.so $(CXX_RELEASE_FLAGS) $(LINKS)
