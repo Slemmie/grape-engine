@@ -1,7 +1,7 @@
 all: release
 
 deps:
-	cd ./vendor/ && make
+	cd ./src/vendor/ && make
 
 CXX_FLAGS = -Wshadow -Wall -std=c++17
 CXX_RELEASE_FLAGS = -O2
