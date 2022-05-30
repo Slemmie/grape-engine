@@ -21,11 +21,6 @@ namespace ge {
 				m_released = true;
 			}
 			
-			inline void release_wait(Event <ARGS...>& event) noexcept {
-				std::unique_lock <std::mutex> lock(event.m_functions_mutex);
-				m_released = true;
-			}
-			
 			constexpr bool released() const noexcept {
 				return m_released;
 			}
@@ -79,8 +74,6 @@ namespace ge {
 		std::vector <std::function <void (ARGS...)>> static_functions;
 		
 		std::mutex m_functions_mutex;
-		
-		friend class Dynamic;
 		
 	};
 	
